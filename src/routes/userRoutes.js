@@ -12,7 +12,7 @@ const UserRoutes = () => {
         <Route path="/home" element={<Home />} />
       </Routes>
     </div>
-  );
-};
+  )
+}
 
-export default UserRoutes;
+export default UserRoutes

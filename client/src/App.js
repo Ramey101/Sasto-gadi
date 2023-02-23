@@ -1,10 +1,11 @@
-import Home from "./containers/home";
+import UserRoutes from "./routes/userRoutes";
+
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <UserRoutes />
     </div>
   );
 }

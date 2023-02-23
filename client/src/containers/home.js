@@ -1,21 +1,39 @@
 import React from "react";
+import Roles from "../containers/roles";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/header/navbar";
+// import { Box, Container } from "@mui/system";
+// import { Button } from "@mui/material";
+import "../App.css";
+import { Divider, Typography } from "@mui/material";
+import { Box, color } from "@mui/system";
 const Home = () => {
   const navigate = useNavigate;
-  const assignRole = () => {
-    // redux : buyer or seller
-    navigate("/home");
-  };
+  // const assignRole = () => {
+  //   // redux : buyer or seller
+  //   navigate("/home");
+  // };
 
   return (
     <>
-      <NavBar />
-      <div>
-        <button onClick={() => assignRole("buyer")}>buyer</button>
-        <button onClick={() => assignRole("seller")}>seller</button>
-        <button>forum </button>
-      </div>
+      <Box
+        className="homepage-container"
+        sx={{ height: "100%", marginTop: "10rem" }}
+      >
+        <div className="button-container">
+          <Typography
+            variant="h3"
+            sx={{
+              color: "black",
+              display: "fixed",
+              justifyContent: "center",
+              paddingRight: "6rem",
+            }}
+          >
+            Car lis is here
+          </Typography>
+        </div>
+      </Box>
     </>
   );
 };

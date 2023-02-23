@@ -4,20 +4,25 @@ import { Box, Button, TextField } from "@mui/material";
 
 const RegisterSchema = Yup.object().shape({
   vehicleType: Yup.string().required("Vehicle Type is Required"),
-  makeYear: Yup.string(),
-  vehicleDetails: Yup.string().email("Invalid Email").optional(),
-  vehicleNumber: Yup.string()
-    .min(5, "Invalid Vehicle Number")
-    .required("Required"),
+  make: Yup.string().required("Make is required"),
+
+  year: Yup.string().required("Year is required"),
+  odometer: Yup.string().required("Odometer is required"),
+  transmission: Yup.string().required("Transmission is required"),
+  engine: Yup.string().required("Engine is required"),
+  price: Yup.string().required("Required"),
 });
 
 const VehicleRegister = () => {
   const formik = useFormik({
     initialValues: {
       vehicleType: "",
-      makeYear: "",
-      vehicleDetails: "",
-      vehicleNumber: "",
+      make: "",
+      model: "",
+      year: "",
+      Odometer: "",
+      Engine: "",
+      price: "",
     },
     validationSchema: RegisterSchema,
     onSubmit: (values) => {
@@ -47,19 +52,9 @@ const VehicleRegister = () => {
 
         <TextField
           fullWidth
-          id="makeYear"
-          name="makeYear"
-          label="Make Year"
-          value={formik.values.fullName}
-          onChange={formik.handleChange}
-          error={formik.touched.fullName && Boolean(formik.errors.fullName)}
-          helperText={formik.touched.fullName && formik.errors.fullName}
-        />
-        <TextField
-          fullWidth
-          id="vehileDetails"
-          name="vehileDetails"
-          label="Vehicle Details"
+          id="make"
+          name="make"
+          label="Make"
           value={formik.values.fullName}
           onChange={formik.handleChange}
           error={formik.touched.fullName && Boolean(formik.errors.fullName)}
@@ -68,9 +63,30 @@ const VehicleRegister = () => {
 
         <TextField
           fullWidth
-          id="vehicleNumber"
-          name="vehicleNumber"
-          label="Vehicle Number"
+          id="year"
+          name="year"
+          label="Year"
+          value={formik.values.fullName}
+          onChange={formik.handleChange}
+          error={formik.touched.fullName && Boolean(formik.errors.fullName)}
+          helperText={formik.touched.fullName && formik.errors.fullName}
+        />
+        <TextField
+          fullWidth
+          id="odometer"
+          name="odometer"
+          label="Odometer"
+          value={formik.values.fullName}
+          onChange={formik.handleChange}
+          error={formik.touched.fullName && Boolean(formik.errors.fullName)}
+          helperText={formik.touched.fullName && formik.errors.fullName}
+        />
+
+        <TextField
+          fullWidth
+          id="details"
+          name="details"
+          label="Details"
           value={formik.values.vehicleNumber}
           onChange={formik.handleChange}
           error={

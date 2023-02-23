@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "../components/header/navbar";
+import VehicleTable from "../components/vehicleTable";
+import Post from "../components/vehicleTable";
 import Login from "../containers/auth/login";
 import Register from "../containers/auth/signUp";
 import VehicleRegister from "../containers/auth/vehicleRegister";
@@ -17,6 +19,7 @@ const UserRoutes = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/vehicleRegister" element={<VehicleRegister />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/post" element={<VehicleTable />} />
       </Routes>
     </div>
   );

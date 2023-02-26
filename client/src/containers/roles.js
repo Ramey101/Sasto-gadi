@@ -1,7 +1,8 @@
 import React from "react";
 import { Alert, Grid } from "@mui/material";
+import NavBar from "../components/header/navbar";
 import CustomCard from "../components/customCard";
-import { useNavigate, useSelector } from "react-router-dom";
+import { Link, useNavigate, useSelector } from "react-router-dom";
 
 const Roles = () => {
   // const Home = () => {
@@ -21,8 +22,12 @@ const Roles = () => {
         spacing={2}
         marginTop={"5%"}
       >
-        <CustomCard role="buyer" />
-        <CustomCard role="seller" />
+        <Link to={"/home"}>
+          <CustomCard role="buyer" />{" "}
+        </Link>
+        <Link to={"/register"}>
+          <CustomCard role="seller" />
+        </Link>
       </Grid>
     </div>
   );

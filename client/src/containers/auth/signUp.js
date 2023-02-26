@@ -1,8 +1,8 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Box, Button, Container, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import { Box } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 const RegisterSchema = Yup.object().shape({
   fullName: Yup.string().min(5, "Too Short").required("Required"),
@@ -10,10 +10,6 @@ const RegisterSchema = Yup.object().shape({
   phoneNumber: Yup.string()
     .min(10, "Invalid Phone Number")
     .max(10, "Invalid Phone Number")
-    .required("Required"),
-  vehicleType: Yup.string().required("Vehicle Type is Required"),
-  vehicleNumber: Yup.string()
-    .min(5, "Invalid Vehicle Number")
     .required("Required"),
   password: Yup.string()
     .required("Please enter your password")
@@ -24,14 +20,14 @@ const RegisterSchema = Yup.object().shape({
   ),
 });
 
-const Register = () => {
+const SignUp = () => {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       fullName: "",
       registerEmail: "",
       phoneNumber: "",
-      vehicleType: "",
-      vehicleNumber: "",
       password: "",
       confirmPassword: "",
     },
@@ -46,7 +42,32 @@ const Register = () => {
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
       <form onSubmit={formik.handleSubmit}>
-        <h1> Login Form </h1>
+        <h1> Sign up Form </h1>
+        <TextField
+          fullWidth
+          id="fullName"
+          name="fullName"
+          label="Full Name"
+          value={formik.values.fullName}
+          onChange={formik.handleChange}
+          error={formik.touched.fullName && Boolean(formik.errors.fullName)}
+          helperText={formik.touched.fullName && formik.errors.fullName}
+        />
+
+        <TextField
+          fullWidth
+          id="registerEmail"
+          name="registerEmail"
+          label="Email Address"
+          value={formik.values.registerEmail}
+          onChange={formik.handleChange}
+          error={
+            formik.touched.registerEmail && Boolean(formik.errors.registerEmail)
+          }
+          helperText={
+            formik.touched.registerEmail && formik.errors.registerEmail
+          }
+        />
 
         <TextField
           fullWidth
@@ -74,6 +95,23 @@ const Register = () => {
           helperText={formik.touched.password && formik.errors.password}
         />
 
+        <TextField
+          fullWidth
+          id="confirmPassword"
+          name="confirmPassword"
+          label="Confirm Password"
+          type={"password"}
+          value={formik.values.confirmPassword}
+          onChange={formik.handleChange}
+          error={
+            formik.touched.confirmPassword &&
+            Boolean(formik.errors.confirmPassword)
+          }
+          helperText={
+            formik.touched.confirmPassword && formik.errors.confirmPassword
+          }
+        />
+
         <Button
           // onClick={() => navigate("/vehicleRegister")}
           sx={{
@@ -85,14 +123,11 @@ const Register = () => {
           variant="contained"
           type="submit"
         >
-          Login
+          Sign up
         </Button>
       </form>
-      {/* <Button variant="contained" fullWidth type="login" sx={{ mt: "4rem" }}>
-        <Link to={"/register"}>Create an Account</Link>
-      </Button> */}
     </Box>
   );
 };
 
-export default Register;
+export default SignUp;

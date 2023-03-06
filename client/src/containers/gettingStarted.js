@@ -1,15 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+// import React from "react";
+// import { Link } from "react-router-dom";
 
-const GettingStarted = () => {
-  return (
-    <div className="App">
-      <Link to="/roles"> gettingStarted</Link>
-    </div>
-  );
-};
-
-export default GettingStarted;
+// const GettingStarted = () => {
+//   return (
+//     <div className="App">
+//       <Link to="/roles"> gettingStarted</Link>
+//     </div>
+//   );
+// };
+// export default GettingStarted;
 
 // import {useNavigate} from "react-router-dom"
 // import {setIsFirstTimeUser} from "../redux/reducers/userSlice"
@@ -27,5 +26,4 @@ export default GettingStarted;
 //     </div>
 //   );
 // }
-
 // export default GettingStarted;

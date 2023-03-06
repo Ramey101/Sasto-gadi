@@ -14,9 +14,9 @@ const UserRoutes = () => {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path="/" element={<Roles />} />
+        <Route path="/roles" element={<Roles />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/vehicleRegister" element={<VehicleRegister />} />
         <Route path="/register" element={<Register />} />
         <Route path="/post" element={<VehicleTable />} />

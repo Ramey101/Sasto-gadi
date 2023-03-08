@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import logo from "../../image/logo.png";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 const pages = ["Buy", "Pricing", "Blog"];
 const settings = ["Sign in", "Create an Account"];
 
-function ResponsiveAppBar() {
+function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -161,4 +161,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default Navbar;

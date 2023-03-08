@@ -42,56 +42,65 @@ const Register = () => {
   });
 
   return (
-    <Box
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-    >
-      <form onSubmit={formik.handleSubmit}>
-        <h1> Login Form </h1>
+    <>
+      <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
+        <form onSubmit={formik.handleSubmit}>
+          <h1> Login Form </h1>
 
-        <TextField
-          fullWidth
-          id="phoneNumber"
-          name="phoneNumber"
-          label="Phone Number"
-          type={"number"}
-          value={formik.values.phoneNumber}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
-          }
-          helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-        />
+          <TextField
+            fullWidth
+            id="phoneNumber"
+            name="phoneNumber"
+            label="Phone Number"
+            type={"number"}
+            value={formik.values.phoneNumber}
+            onChange={formik.handleChange}
+            error={
+              formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
+            }
+            helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+          />
 
-        <TextField
-          fullWidth
-          id="password"
-          name="password"
-          label="Password"
-          type={"password"}
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-        />
+          <TextField
+            fullWidth
+            id="password"
+            name="password"
+            label="Password"
+            type={"password"}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
+          />
 
-        <Button
-          // onClick={() => navigate("/vehicleRegister")}
-          sx={{
-            backgroundColor: "orange",
-            margin: "auto",
-            mt: "5rem",
-            justifyContent: "center",
-          }}
-          variant="contained"
-          type="submit"
-        >
-          Login
-        </Button>
-      </form>
-      {/* <Button variant="contained" fullWidth type="login" sx={{ mt: "4rem" }}>
+          <Button
+            // onClick={() => navigate("/vehicleRegister")}
+            sx={{
+              backgroundColor: "orange",
+              margin: "auto",
+              mt: "5rem",
+              justifyContent: "center",
+            }}
+            variant="contained"
+            type="submit"
+          >
+            Login
+          </Button>
+        </form>
+      </Box>
+      <Button
+        variant="contained"
+        type="login"
+        sx={{
+          mt: "4rem",
+          backgroundColor: "wheat",
+        }}
+      >
         <Link to={"/register"}>Create an Account</Link>
-      </Button> */}
-    </Box>
+      </Button>
+    </>
   );
 };
 

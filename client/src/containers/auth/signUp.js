@@ -37,11 +37,31 @@ const SignUp = () => {
     },
   });
 
+  const submitFormData = async (values) => {
+    const Values = { values };
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(Values),
+    };
+    const res = await fetch("http://localhost:3000/register", requestOptions);
+    debugger;
+    // const data = await res.json()
+    // 	navigate(props.onSuccessNavigation)
+    // if(res.status  && data.message){
+    //   dispatch(setAlertMessages(data.message))
+    // }
+  };
+
   return (
     <Box
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
-      <form onSubmit={formik.handleSubmit}>
+      <form
+        initialValues={{}}
+        onSubmit={(values) => submitFormData(values)}
+        //  validationSchema={schema}
+      >
         <h1> Sign up Form </h1>
         <TextField
           fullWidth

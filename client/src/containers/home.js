@@ -1,14 +1,12 @@
 import React from "react";
-import Roles from "../containers/roles";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../components/header/navbar";
 // import { Box, Container } from "@mui/system";
 // import { Button } from "@mui/material";
 import "../App.css";
 import { Divider, Typography } from "@mui/material";
 import { Box, color } from "@mui/system";
 const Home = () => {
-  const navigate = useNavigate;
+  // const navigate = useNavigate;
   // const assignRole = () => {
   //   // redux : buyer or seller
   //   navigate("/home");

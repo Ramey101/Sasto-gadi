@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-  firstTimeUser: true,
-  // token: "",
+  user: "null",
 };
 
 //What is createSlice in Redux Toolkit?
@@ -11,10 +10,13 @@ export const initialState = {
 // In Redux-Toolkit, the createSlice method helps us create a slice of the redux-store.
 const userSlice = createSlice({
   name: "user",
-  initialState,
+  initialState: "",
   reducers: {
-    setIsFirstTimeUser: (state, actions) => {
-      state.firstTimeUser = false;
+    login: (state, actions) => {
+      state.user = actions.payload;
+    },
+    logout: (state) => {
+      state.user = null;
     },
   },
 });

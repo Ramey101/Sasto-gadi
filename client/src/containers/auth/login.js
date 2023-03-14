@@ -4,16 +4,10 @@ import { Box, Button, Container, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Grid } from "@mui/material";
 
-const RegisterSchema = Yup.object().shape({
-  fullName: Yup.string().min(5, "Too Short").required("Required"),
-  registerEmail: Yup.string().email("Invalid Email").optional(),
+const LoginSchema = Yup.object().shape({
   phoneNumber: Yup.string()
     .min(10, "Invalid Phone Number")
     .max(10, "Invalid Phone Number")
-    .required("Required"),
-  vehicleType: Yup.string().required("Vehicle Type is Required"),
-  vehicleNumber: Yup.string()
-    .min(5, "Invalid Vehicle Number")
     .required("Required"),
   password: Yup.string()
     .required("Please enter your password")
@@ -24,7 +18,7 @@ const RegisterSchema = Yup.object().shape({
   ),
 });
 
-const Register = () => {
+const Login = () => {
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -35,7 +29,7 @@ const Register = () => {
       password: "",
       confirmPassword: "",
     },
-    validationSchema: RegisterSchema,
+    validationSchema: LoginSchema,
     onSubmit: (values) => {
       console.log(values);
     },
@@ -54,7 +48,7 @@ const Register = () => {
             id="phoneNumber"
             name="phoneNumber"
             label="Phone Number"
-            type={"number"}
+            type={"string"}
             value={formik.values.phoneNumber}
             onChange={formik.handleChange}
             error={
@@ -104,4 +98,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

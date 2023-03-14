@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-  user: "null",
+  isLoggedIn: false,
 };
 
 //What is createSlice in Redux Toolkit?
@@ -13,11 +13,9 @@ const userSlice = createSlice({
   initialState: "",
   reducers: {
     login: (state, actions) => {
-      state.user = actions.payload;
+      state.isLoggedIn = actions.payload;
     },
-    logout: (state) => {
-      state.user = null;
-    },
+  
   },
 });
 

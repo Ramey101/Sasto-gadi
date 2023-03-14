@@ -1,151 +1,137 @@
-import { useFormik } from "formik";
+import React, { useState } from "react";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Button, TextField } from "@mui/material";
-import { Box } from "@mui/system";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Box } from "@mui/system";
 
-const RegisterSchema = Yup.object().shape({
-  fullName: Yup.string().min(5, "Too Short").required("Required"),
-  registerEmail: Yup.string().email("Invalid Email").optional(),
-  phoneNumber: Yup.string()
-    .min(10, "Invalid Phone Number")
-    .max(10, "Invalid Phone Number")
+const SignupSchema = Yup.object().shape({
+  userId: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  fullName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
     .required("Required"),
   password: Yup.string()
-    .required("Please enter your password")
-    .min(8, "Password must be atleast 8 characters long"),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Must enter the same password"
-  ),
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  confirmPassword: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  email: Yup.string().email("Invalid email").required("Required"),
 });
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const formik = useFormik({
-    initialValues: {
-      fullName: "",
-      registerEmail: "",
-      phoneNumber: "",
-      password: "",
-      confirmPassword: "",
-    },
-    validationSchema: RegisterSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
-
-  const submitFormData = async (values) => {
-    const Values = { values };
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(Values),
-    };
-    const res = await fetch("http://localhost:3000/register", requestOptions);
-    debugger;
-    // const data = await res.json()
-    // 	navigate(props.onSuccessNavigation)
-    // if(res.status  && data.message){
-    //   dispatch(setAlertMessages(data.message))
-    // }
-  };
-
+  // const submitFormData = async (values) => {
+  //   console.log(values);
+  //   const requestOptions = {
+  //     method: " ",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(values),
+  //   };
+  //   const res = await fetch(`http://localhost:9000/signup`, requestOptions);
+  //   const data = await res.json();
+  //   if (res.status == 200) {
+  //     console.log(alert(data.msg));
+  //   }
+  //   navigate("/login");
+  // };
   return (
     <Box
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
-      <form
+      <Formik
         initialValues={{}}
-        onSubmit={(values) => submitFormData(values)}
-        //  validationSchema={schema}
+        // validationSchema={SignupSchema}
+        onSubmit={(values) => {
+          axios({
+            method: "post",
+            url: "http://localhost:7001/register",
+            data: values,
+            headers: { "Content-Type": "application/json" },
+          })
+            .then(function (response) {
+              if (response.status == 200) {
+                alert(response.data.msg);
+                navigate("/login");
+              } else {
+                alert(response.data.msg);
+              }
+            })
+            .catch(function (response) {
+              //handle error
+              console.log(response);
+            });
+        }}
       >
-        <h1> Sign up Form </h1>
-        <TextField
-          fullWidth
-          id="fullName"
-          name="fullName"
-          label="Full Name"
-          value={formik.values.fullName}
-          onChange={formik.handleChange}
-          error={formik.touched.fullName && Boolean(formik.errors.fullName)}
-          helperText={formik.touched.fullName && formik.errors.fullName}
-        />
-
-        <TextField
-          fullWidth
-          id="registerEmail"
-          name="registerEmail"
-          label="Email Address"
-          value={formik.values.registerEmail}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.registerEmail && Boolean(formik.errors.registerEmail)
-          }
-          helperText={
-            formik.touched.registerEmail && formik.errors.registerEmail
-          }
-        />
-
-        <TextField
-          fullWidth
-          id="phoneNumber"
-          name="phoneNumber"
-          label="Phone Number"
-          type={"number"}
-          value={formik.values.phoneNumber}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
-          }
-          helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-        />
-
-        <TextField
-          fullWidth
-          id="password"
-          name="password"
-          label="Password"
-          type={"password"}
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-        />
-
-        <TextField
-          fullWidth
-          id="confirmPassword"
-          name="confirmPassword"
-          label="Confirm Password"
-          type={"password"}
-          value={formik.values.confirmPassword}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.confirmPassword &&
-            Boolean(formik.errors.confirmPassword)
-          }
-          helperText={
-            formik.touched.confirmPassword && formik.errors.confirmPassword
-          }
-        />
-
-        <Button
-          // onClick={() => navigate("/vehicleRegister")}
-          sx={{
-            backgroundColor: "orange",
-            margin: "auto",
-            mt: "5rem",
-            justifyContent: "center",
-          }}
-          variant="contained"
-          type="submit"
-        >
-          Sign up
-        </Button>
-      </form>
+        {({ errors, touched, values }) => (
+          <div className="form">
+            <h2>SignUp</h2>
+            <Form>
+              <div className="">
+                <Field
+                  name="fullName"
+                  type="text"
+                  placeholder="Full Name"
+                  className="loginInputText-Field loginElement textField"
+                />
+                <Field
+                  name="userName"
+                  type="text"
+                  placeholder="User Name"
+                  className="loginInputText-Field loginElement textField"
+                />
+                <Field
+                  name="email"
+                  type="text"
+                  placeholder="email"
+                  className="loginInputText-Field loginElement textField"
+                />
+                <Field
+                  name="phoneNumber"
+                  type="number"
+                  placeholder="Phone number"
+                  className="loginInputText-Field loginElement textField"
+                />
+                <Field
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  className="loginInputText-Field loginElement textField"
+                />
+                <Field
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="confirm password"
+                  className="loginInputText-Field loginElement textField"
+                />
+                <button
+                  type="submit"
+                  className="button loginElement signupButton"
+                >
+                  SignUp
+                </button>
+                <div className="linkSpace"></div>
+                <p className="link">
+                  Already have an account?{" "}
+                  <Link to={"/login"} style={{ color: "white" }}>
+                    Login
+                  </Link>
+                </p>
+              </div>
+            </Form>
+          </div>
+        )}
+      </Formik>
     </Box>
   );
 };

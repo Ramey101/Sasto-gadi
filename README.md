@@ -36,3 +36,7 @@ Install my-project with npm
 <img width="1510" alt="Screenshot 2023-03-09 at 22 56 47" src="https://user-images.githubusercontent.com/106477608/225340517-535e801b-f78f-4891-95ea-c5551fd0b9a3.png">
 
 
+
+
+<img width="1505" alt="Screenshot 2023-03-09 at 22 56 10" src="https://user-images.githubusercontent.com/106477608/225340664-6f13f3d1-5935-4cf5-a94a-a7ac29b5a879.png">
+

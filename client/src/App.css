@@ -78,3 +78,22 @@
     transform: rotate(360deg);
   }
 }
+.form {
+  color: white;
+  position: relative;
+  top: 50px;
+  z-index: 1;
+  border-radius: 20px;
+  background-color: rgb(225, 122, 62);
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  min-height: 30vh;
+  padding: 0px 20px 0px 20px;
+  display: grid;
+  place-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  justify-content: center;
+}

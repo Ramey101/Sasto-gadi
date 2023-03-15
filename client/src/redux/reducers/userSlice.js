@@ -15,7 +15,6 @@ const userSlice = createSlice({
     login: (state, actions) => {
       state.isLoggedIn = actions.payload;
     },
-  
   },
 });
 
